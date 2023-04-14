@@ -1,0 +1,63 @@
+.btn-link {
+  @extend .position-relative;
+  color: $primaryLink !important;
+  font-size: 13px;
+  text-decoration: none;
+
+  &:before {
+    @extend .content-before;
+    background: $primaryLink;
+    bottom: -2px;
+    height: 1px;
+    left: 0;
+    transition: width $transitionFast;
+    width: 0;
+  }
+
+  &:hover {
+    &:before {
+      @extend .w-100;
+    }
+
+    .pi {
+      margin-left: 2px;
+      opacity: 1;
+    }
+  }
+
+  .pi {
+    font-size: .9rem;
+    margin-left: 0;
+    opacity: 0;
+    transition: .25s;
+    transition-delay: .15s;
+  }
+
+  &.hovered {
+    transition: color;
+    color: $primary !important;
+
+    &:before {
+      @extend .w-100;
+    }
+  }
+}
+
+.theme-light {
+  .btn-link {
+    color: $primaryLink !important;
+
+    &:before {
+      background: $primaryLink !important;
+    }
+
+    &.hovered {
+      color: $primary !important;
+      font-weight: 600;
+
+      &:before {
+        background: $primary !important;
+      }
+    }
+  }
+}
