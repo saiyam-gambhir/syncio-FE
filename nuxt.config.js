@@ -1,11 +1,9 @@
 export default defineNuxtConfig({
   modules: [
+    '@nuxtjs/google-fonts',
     '@pinia/nuxt',
+    '@vueuse/nuxt',
   ],
-
-  imports: {
-    dirs: ['./stores']
-  },
 
   runtimeConfig: {
     public: {
@@ -19,6 +17,18 @@ export default defineNuxtConfig({
       'defineStore', // import { defineStore } from 'pinia'
       ['defineStore', 'definePiniaStore'], // import { defineStore as definePiniaStore } from 'pinia'
     ],
+  },
+
+  googleFonts: {
+    families: {
+      'Inter+Tight': {
+        wght: [400, 600, 700],
+      }
+    },
+    display: 'swap',
+    prefetch: true,
+    preconnect: true,
+    preload: true,
   },
 
   css: [

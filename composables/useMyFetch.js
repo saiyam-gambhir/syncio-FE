@@ -5,6 +5,7 @@ export const useMyFetch = (request, options) => {
   return useFetch(request, {
     baseURL,
     headers: { 'x-syncio-app-id': appId },
+    method: 'get',
     onRequest({ request, options }) {
       options.headers['Authorization'] = `Bearer ${sessionStorage.getItem('ID_TOKEN_KEY')}`
     },

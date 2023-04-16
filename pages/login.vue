@@ -5,10 +5,10 @@ import { useAuthStore } from '~/stores/auth/'
 const auth = useAuthStore()
 
 /* ===== METHODS ===== */
-// const loginHandler = () => {
-//   const { email, password } = auth.loginForm
-//   auth.login({ email, password })
-// }
+const loginHandler = () => {
+  const { email, password } = auth.loginForm
+  auth.login({ email, password })
+}
 
 const shopifyLoginHandler = async () => {
   await auth.shopifyLogin('shopify', 'test-nainesh-destination.myshopify.com')
@@ -27,11 +27,11 @@ definePageMeta({
 
   <div class="flex justify-content-between mt-5 login-platforms">
     <Button class="active-btn mr-2 w-6 font-bold border-1 surface-border surface-0 p-button-lg p-component text-900 inline-flex align-items-center justify-content-center">
-      <img src="@/assets/images/wo-logo-sm.png" alt="shopify logo" class="mr-2" />
+      <img src="/images/wo-logo-sm.png" alt="shopify logo" class="mr-2" />
       <span class="ml-2">WooCommerce</span>
     </Button>
     <Button class="ml-2 w-6 font-bold border-1 surface-border surface-0 p-button-lg p-component text-600 inline-flex align-items-center justify-content-center">
-      <img src="@/assets/images/shopify-logo-sm.png" alt="shopify logo" class="mr-2" />
+      <img src="/images/shopify-logo-sm.png" alt="shopify logo" class="mr-2" />
       <span class="ml-2">Shopify</span>
     </Button>
   </div>
@@ -49,7 +49,7 @@ definePageMeta({
       <router-link to="/forgot-password" class="btn-link hovered text-xl">Forgot password?</router-link>
     </div>
 
-    <Button label="Login" class="w-full p-button-lg" iconPos="right"></Button>
+    <Button label="Login" class="w-full p-button-lg" iconPos="right" @click="loginHandler"></Button>
     <Button label="Shopify Login" icon="pi pi-user" class="w-full p-button-lg mt-4" iconPos="right" @click="shopifyLoginHandler"></Button>
   </form>
 </template>
