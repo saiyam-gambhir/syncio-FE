@@ -3,14 +3,15 @@ export default defineNuxtConfig({
     '@pinia/nuxt',
   ],
 
-  runtimeConfig: {
-    public: {
-      baseURL: process.env.NUXT_PUBLIC_API_BASE
-    }
+  imports: {
+    dirs: ['./stores']
   },
 
-  imports: {
-    dirs: ['stores']
+  runtimeConfig: {
+    public: {
+      baseURL: process.env.NUXT_PUBLIC_API_BASE,
+      appId: process.env.NUXT_APP_ID
+    }
   },
 
   pinia: {
