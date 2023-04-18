@@ -3,7 +3,7 @@ import { DateTime } from 'luxon'
 import { ref, onMounted, } from 'vue'
 import { useAuthStore } from '@/stores/auth'
 
-/* ===== DATA ===== */
+/* ----- DATA ----- */
 const { timeZone } = useAuthStore()
 const date = ref()
 const today = DateTime.now().setZone(timeZone)
@@ -27,7 +27,7 @@ const presetRanges = ref([
   { label: 'Last 60 Days', range: [startOfLastSixtyDays, endOfYesterday] },
 ])
 
-/* ===== MOUNTED ===== */
+/* ----- MOUNTED ----- */
 onMounted(() => {
   date.value = [startOfLastThirtyDays, endOfToday]
 })

@@ -1,9 +1,9 @@
 import deepmerge from 'deepmerge'
 
-/* ===== ACTIONS ===== */
+/* ----- ACTIONS ----- */
 import { fetchCurrentPlan } from './actions/fetchCurrentPlan'
 // import { fetchPlans } from './actions/fetchPlans'
-// import { fetchUser } from './actions/fetchUser'
+import { fetchUser } from '~/stores/auth/actions/fetchUser'
 // import { forgotPassword } from './actions/forgotPassword'
 import { login } from '~/stores/auth/actions/login'
 import { shopifyLogin } from '~/stores/auth/actions/shopifyLogin'
@@ -73,9 +73,13 @@ export const useAuthStore = defineStore('auth', {
   actions: deepmerge.all([
     fetchCurrentPlan,
     // fetchPlans,
-    // fetchUser,
+    fetchUser,
     // forgotPassword,
     login,
     shopifyLogin,
-  ])
+  ]),
+
+  // persist: {
+  //   storage: persistedState.sessionStorage,
+  // },
 })

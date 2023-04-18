@@ -1,10 +1,10 @@
 <script setup>
 import { ref } from 'vue'
 
-/* ===== EMITS ===== */
+/* ----- EMITS ----- */
 const emits = defineEmits(['onInput'])
 
-/* ===== PROPS ===== */
+/* ----- PROPS ----- */
 const props = defineProps({
   disabled: {
     type: Boolean,
@@ -17,7 +17,7 @@ const props = defineProps({
   }
 })
 
-/* ===== METHODS ===== */
+/* ----- METHODS ----- */
 const onInputHandler = () => {
   emits('onInput', props.isChecked)
 }

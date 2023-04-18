@@ -1,10 +1,10 @@
 <script setup>
 import { useAuthStore } from '~/stores/auth/'
 
-/* ===== DATA ===== */
+/* ----- DATA ----- */
 const auth = useAuthStore()
 
-/* ===== METHODS ===== */
+/* ----- METHODS ----- */
 const loginHandler = () => {
   const { email, password } = auth.loginForm
   auth.login({ email, password })
@@ -15,8 +15,9 @@ const shopifyLoginHandler = async () => {
 }
 
 definePageMeta({
-  layout: 'logged-out'
-});
+  middleware: 'login',
+  layout: 'logged-out',
+})
 </script>
 
 <template>
@@ -50,6 +51,6 @@ definePageMeta({
     </div>
 
     <Button label="Login" class="w-full p-button-lg" iconPos="right" @click="loginHandler"></Button>
-    <Button label="Shopify Login" icon="pi pi-user" class="w-full p-button-lg mt-4" iconPos="right" @click="shopifyLoginHandler"></Button>
+    <Button label="Shopify Login" :loading="auth.loginForm.loading" icon="pi pi-user" class="w-full p-button-lg mt-4" iconPos="right" @click="shopifyLoginHandler"></Button>
   </form>
 </template>

@@ -1,7 +1,7 @@
 <script setup>
 import { useConnectionsStore } from '@/stores/connections'
 
-/* ===== DATA ===== */
+/* ----- DATA ----- */
 const connections = useConnectionsStore()
 </script>
 

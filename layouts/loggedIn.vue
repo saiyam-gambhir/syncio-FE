@@ -1,21 +1,76 @@
 <script setup>
+import { useAuthStore } from '~/stores/auth'
+import { useConnectionsStore } from '~/stores/connections'
+import { useUrlSearchParams } from '@vueuse/core'
+import Logo from '~/components/icons/Logo.vue'
+
+/* ----- COMPONENTS ----- */
 import Navbar from '~/components/navbar/Navbar.vue'
+const loading = ref(true)
+
+/* ----- DATA ----- */
+const { showUpgradeDialogHandler } = useUpgradeDialog()
+const { showUpgrade, type } = useUrlSearchParams()
+const auth = useAuthStore()
+const connections = useConnectionsStore()
+
+/* ----- MOUNTED ----- */
+onMounted(async () => {
+  await nextTick()
+  loading.value = false
+
+	const USER_ID = sessionStorage.USER_ID
+	if(!auth.user) {
+    loading.value = true
+		await auth.fetchUser(USER_ID)
+		await auth.fetchCurrentPlan(USER_ID)
+		await connections.fetchCurrentStore()
+    loading.value = false
+  }
+
+	if(Boolean(showUpgrade)) {
+  	showUpgradeDialogHandler(type)
+  }
+})
 </script>
+
 <template>
-  <main class="main theme-light">
-    <Toast position="top-center" successIcon="pi pi-check-circle" />
-    <div class="min-h-screen flex relative lg:static">
-      <Navbar></Navbar>
+  <main class="main">
+    <section v-if="loading" class="loading-page flex align-items-center justify-content-center">
+      <Logo />
+    </section>
+    <div v-else>
+      <Toast position="top-center" successIcon="pi pi-check-circle" />
+      <div class="min-h-screen flex relative lg:static">
+        <Navbar></Navbar>
 
-      <div class="min-h-screen flex flex-column relative flex-auto">
-        <Header></Header>
+        <div class="min-h-screen flex flex-column relative flex-auto">
+          <Header></Header>
 
-        <div class="flex flex-auto flex-column router-view mx-auto">
-          <div class="flex-auto surface-section p-5 pt-4">
-            <NuxtPage></NuxtPage>
+          <div class="flex flex-auto flex-column router-view mx-auto">
+            <div class="flex-auto surface-section p-5 pt-4">
+              <NuxtPage></NuxtPage>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </main>
 </template>
+
+<style lang="scss" scoped>
+.loading-page {
+  height: 100vh;
+  background: linear-gradient(90deg,rgba(252,176,87,.25) 33.33%,rgba(250,117,123,.25) 66.66%);
+
+  svg {
+    animation: logo .75s infinite alternate;
+    width: 40rem !important;
+  }
+}
+
+@keyframes logo {
+  0% { opacity: .75; scale: .9; filter: brightness(3) }
+  100% { opacity: 1; scale: 1; filter:brightness(1) }
+}
+</style>

@@ -4,6 +4,7 @@
  */
 import { useConnectionsStore } from '~/stores/connections'
 import * as routes from '@/routes'
+
 export const shopifyLogin = {
   async shopifyLogin(platform, storeName) {
     try {
@@ -32,7 +33,7 @@ export const shopifyLogin = {
       }
 
       // Get the connections store object using a custom hook
-      const connections = useConnectionsStore()
+      const { fetchCurrentStore } = useConnectionsStore()
 
       // If the token exists in session storage, set the authentication state to true
       if (sessionStorage.getItem('ID_TOKEN_KEY')) {
@@ -42,7 +43,7 @@ export const shopifyLogin = {
         sessionStorage.setItem('USER_ID', this.user?.id)
 
         // Fetch the current store from the connections store
-        await connections.fetchCurrentStore()
+        await fetchCurrentStore()
 
         // Fetch the current plan for the user using their ID
         await this.fetchCurrentPlan(user.id)

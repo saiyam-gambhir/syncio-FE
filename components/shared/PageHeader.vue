@@ -1,10 +1,10 @@
 <script setup>
 import { useRouter } from 'vue-router'
 
-/* ===== DATA ===== */
+/* ----- DATA ----- */
 const router = useRouter()
 
-/* ===== PROPS ===== */
+/* ----- PROPS ----- */
 const props = defineProps({
   content: {
     type: String
@@ -28,7 +28,7 @@ const props = defineProps({
   },
 })
 
-/* ===== METHODS ===== */
+/* ----- METHODS ----- */
 const backButtonHandler = () => {
   router.replace({ name: props.href })
 }

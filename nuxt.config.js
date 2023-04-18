@@ -1,6 +1,7 @@
 export default defineNuxtConfig({
   modules: [
     '@nuxtjs/google-fonts',
+    '@pinia-plugin-persistedstate/nuxt',
     '@pinia/nuxt',
     '@vueuse/nuxt',
   ],
@@ -12,11 +13,20 @@ export default defineNuxtConfig({
     }
   },
 
+  context: {
+    ssr: false,
+  },
+
   pinia: {
     autoImports: [
       'defineStore', // import { defineStore } from 'pinia'
       ['defineStore', 'definePiniaStore'], // import { defineStore as definePiniaStore } from 'pinia'
     ],
+  },
+
+  imports: {
+    dir: ['stores'],
+    global: true
   },
 
   googleFonts: {
@@ -34,10 +44,17 @@ export default defineNuxtConfig({
   css: [
     'primevue/resources/themes/lara-light-blue/theme.css',
     'primevue/resources/primevue.css',
-    'primeicons/primeicons.css',
     '/node_modules/primeflex/primeflex.css',
+    'primeicons/primeicons.css',
     '~/assets/scss/main.scss',
   ],
+
+  router: {
+    middleware: [
+      'auth',
+      'login'
+    ]
+  },
 
   build: {
     transpile: ['primevue']

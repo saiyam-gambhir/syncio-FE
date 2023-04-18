@@ -4,11 +4,11 @@ html {
   font-size: 13px;
   font-weight: $fontNormal;
   letter-spacing: .025rem;
+}
 
-  &:not(.theme-light) {
-    .logo-path {
-      fill: $cardBackground;
-    }
+.theme-light {
+  .logo-path {
+    fill: $cardBackground;
   }
 }
 
@@ -37,7 +37,7 @@ p {
   }
 }
 
-/* ===== OVERRIDES ===== */
+/* ----- OVERRIDES ----- */
 .grid {
   margin: {
     left: -$gutter;
@@ -393,7 +393,7 @@ input.p-inputtext-lg {
     }
   }
 }
-/* ===== OVERRIDES ===== */
+/* ----- OVERRIDES ----- */
 
 .theme-light .primary-navigation .router-link-active:not(.disabled) {
   background: $secondaryHoverBg;

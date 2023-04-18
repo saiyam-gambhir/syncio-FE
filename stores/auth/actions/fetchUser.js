@@ -1,6 +1,9 @@
 export const fetchUser = {
   async fetchUser(userID) {
-    const response = await this.$https(`user/${userID }`)
-    this.user = response.data.user
+    const { data: { value }, pending } = await useMyFetch((`user/${userID}`))
+
+    if(!pending.value) {
+      if(value.success) this.user = await value.user
+    }
   }
 }

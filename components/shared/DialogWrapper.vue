@@ -1,5 +1,5 @@
 <script setup>
-/* ===== PROPS ===== */
+/* ----- PROPS ----- */
 const props = defineProps({
   isVisible: {
     type: Boolean,
@@ -22,10 +22,10 @@ const props = defineProps({
   }
 })
 
-/* ===== EMITS ===== */
+/* ----- EMITS ----- */
 const emits = defineEmits(['closeDialog'])
 
-/* ===== METHODS ===== */
+/* ----- METHODS ----- */
 const closeDialogHandler = () => {
   emits('closeDialog')
 }

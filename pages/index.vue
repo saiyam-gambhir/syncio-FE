@@ -1,0 +1,28 @@
+<script setup>
+import { useAuthStore } from '~/stores/auth';
+
+/* ----- COMPONENTS ----- */
+import PageHeader from '~/components/shared/PageHeader.vue'
+
+/* ----- DATA ----- */
+const auth = useAuthStore()
+
+/* ----- PAGE META ----- */
+definePageMeta({
+	middleware: 'auth',
+	requiredAuth: true,
+  layout: 'logged-in',
+})
+</script>
+
+<template>
+	<PageHeader
+		content="Get the most out of Syncio so you can focus on growing your business"
+		title="Welcome">
+	</PageHeader>
+
+	<article class="grid mt-4">
+    <DashboardLeft />
+    <DashboardRight />
+	</article>
+</template>
