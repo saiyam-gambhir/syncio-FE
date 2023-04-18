@@ -1,15 +1,9 @@
 html {
   color: $textPrimary;
   font-family: 'Inter Tight', sans-serif;
-  font-size: 13px;
+  font-size: 12.5px;
   font-weight: $fontNormal;
   letter-spacing: .025rem;
-}
-
-.theme-light {
-  .logo-path {
-    fill: $cardBackground;
-  }
 }
 
 .p-component {
@@ -395,11 +389,9 @@ input.p-inputtext-lg {
 }
 /* ----- OVERRIDES ----- */
 
-.theme-light .primary-navigation .router-link-active:not(.disabled) {
-  background: $secondaryHoverBg;
-  border: 1px solid $primary;
-  color: $primary !important;
-  font-weight: $fontMedium;
+.primary-navigation .router-link-active:not(.disabled) {
+  color: #000 !important;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.03), 0px 0px 2px rgba(0, 0, 0, 0.06), 0px 2px 6px rgba(0, 0, 0, 0.12) !important;
 }
 
 .nav-wrapper {

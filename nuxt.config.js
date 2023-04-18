@@ -13,20 +13,18 @@ export default defineNuxtConfig({
     }
   },
 
-  context: {
-    ssr: false,
-  },
+  components: [
+    {
+      path: '~/components',
+      pathPrefix: false,
+    }
+  ],
 
   pinia: {
     autoImports: [
       'defineStore', // import { defineStore } from 'pinia'
       ['defineStore', 'definePiniaStore'], // import { defineStore as definePiniaStore } from 'pinia'
     ],
-  },
-
-  imports: {
-    dir: ['stores'],
-    global: true
   },
 
   googleFonts: {

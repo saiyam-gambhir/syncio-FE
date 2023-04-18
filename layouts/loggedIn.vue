@@ -2,10 +2,8 @@
 import { useAuthStore } from '~/stores/auth'
 import { useConnectionsStore } from '~/stores/connections'
 import { useUrlSearchParams } from '@vueuse/core'
-import Logo from '~/components/icons/Logo.vue'
 
 /* ----- COMPONENTS ----- */
-import Navbar from '~/components/navbar/Navbar.vue'
 const loading = ref(true)
 
 /* ----- DATA ----- */

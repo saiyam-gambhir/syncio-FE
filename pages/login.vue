@@ -23,7 +23,7 @@ definePageMeta({
 <template>
   <div class="flex align-items-center justify-content-between">
     <h1 class="text-3xl text-center line-height-3 m-0">Login to your account</h1>
-    <router-link to="/woocommerce/create-account" class="btn-link hovered text-xl">Register</router-link>
+    <NuxtLink to="/woocommerce/create-account" class="btn-link hovered text-xl">Register</NuxtLink>
   </div>
 
   <div class="flex justify-content-between mt-5 login-platforms">
@@ -47,7 +47,7 @@ definePageMeta({
     </div>
 
     <div class="flex align-items-center mt-5 mb-4">
-      <router-link to="/forgot-password" class="btn-link hovered text-xl">Forgot password?</router-link>
+      <NuxtLink to="/forgot-password" class="btn-link hovered text-xl">Forgot password?</NuxtLink>
     </div>
 
     <Button label="Login" class="w-full p-button-lg" iconPos="right" @click="loginHandler"></Button>

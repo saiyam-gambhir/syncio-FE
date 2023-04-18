@@ -1,7 +1,15 @@
 <script setup>
+/* ----- PAGE META ----- */
 definePageMeta({
-  layout: 'logged-in'
+	middleware: 'auth',
+	requiredAuth: true,
+  layout: 'logged-in',
 })
 </script>
 
-<template></template>
+<template>
+	<PageHeader
+		content="See what's happening with your syncs, find and fix issues"
+		title="Activity Center">
+	</PageHeader>
+</template>

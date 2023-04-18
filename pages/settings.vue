@@ -1,7 +1,5 @@
 <script setup>
 import { useAuthStore } from '~/stores/auth'
-import PageHeader from '~/components/shared/PageHeader.vue'
-import Setting from '~/components/settings/Setting.vue'
 
 /* ----- PAGE META ----- */
 definePageMeta({
@@ -47,7 +45,7 @@ const auth = useAuthStore()
 
         <Setting
           description="Set commissions at store, vendor or product/SKU level"
-          :disabled="!auth.isOrderModuleAvailable"
+          :disabled="!auth.isPayoutsModuleAvailable"
           href="/payouts-settings"
           icon="pi-dollar"
           title="Payouts settings">

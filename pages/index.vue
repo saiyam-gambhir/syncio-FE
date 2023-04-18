@@ -1,9 +1,6 @@
 <script setup>
 import { useAuthStore } from '~/stores/auth';
 
-/* ----- COMPONENTS ----- */
-import PageHeader from '~/components/shared/PageHeader.vue'
-
 /* ----- DATA ----- */
 const auth = useAuthStore()
 
