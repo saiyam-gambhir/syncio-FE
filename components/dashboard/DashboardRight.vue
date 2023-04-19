@@ -1,10 +1,5 @@
 <script setup>
-import { ref } from 'vue'
 import { useConnectionsStore } from '@/stores/connections'
-
-/* ----- COMPONENTS ----- */
-import AppLink from '~/components/shared/AppLink.vue'
-import CardWrapper from '~/components/dashboard/CardWrapper.vue'
 
 /* ----- DATA ----- */
 const connectionsStore = useConnectionsStore()
@@ -56,7 +51,7 @@ const sourceAnnouncements = ref([
                   <li v-for="item in data.description" :key="item" v-html="item"></li>
                 </ul>
                 <a v-if="data.externalLink" :href="data.href" target="_blank" class="p-button font-bold mt-5">Learn more</a>
-                <router-link v-else :to="data.href" class="p-button font-bold mt-5">Learn more</router-link>
+                <NuxtLink v-else :to="data.href" class="p-button font-bold mt-5">Learn more</NuxtLink>
               </div>
 
               <div class="col-4 justify-content-center flex" :class="{ 'col-6': !data.features }">

@@ -3,14 +3,12 @@ import { useAuthStore } from '~/stores/auth'
 import { useConnectionsStore } from '~/stores/connections'
 import { useUrlSearchParams } from '@vueuse/core'
 
-/* ----- COMPONENTS ----- */
-const loading = ref(true)
-
 /* ----- DATA ----- */
-const { showUpgradeDialogHandler } = useUpgradeDialog()
 const { showUpgrade, type } = useUrlSearchParams()
+const { showUpgradeDialogHandler } = useUpgradeDialog()
 const auth = useAuthStore()
 const connections = useConnectionsStore()
+const loading = ref(true)
 
 /* ----- MOUNTED ----- */
 onMounted(async () => {
@@ -59,7 +57,7 @@ onMounted(async () => {
 <style lang="scss" scoped>
 .loading-page {
   height: 100vh;
-  background: linear-gradient(90deg,rgba(252,176,87,.25) 33.33%,rgba(250,117,123,.25) 66.66%);
+  background: linear-gradient(90deg,rgba(252,176,87,.5) 33.33%,rgba(250,117,123,.5) 66.66%);
 
   svg {
     animation: logo .75s infinite alternate;

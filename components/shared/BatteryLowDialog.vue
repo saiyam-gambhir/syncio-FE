@@ -1,9 +1,6 @@
 <script setup>
 import { useAuthStore } from '@/stores/auth'
 
-/* ----- COMPONENTS ----- */
-import DialogWrapper from '@/components/shared/DialogWrapper.vue'
-
 /* ----- DATA ----- */
 const auth = useAuthStore()
 

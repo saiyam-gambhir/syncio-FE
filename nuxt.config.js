@@ -1,4 +1,8 @@
 export default defineNuxtConfig({
+  app: {
+    pageTransition: { name: 'path', mode: 'out-in' }
+  },
+
   modules: [
     '@nuxtjs/google-fonts',
     '@pinia-plugin-persistedstate/nuxt',
@@ -12,6 +16,14 @@ export default defineNuxtConfig({
       appId: process.env.NUXT_APP_ID
     }
   },
+
+  css: [
+    '~/theme/theme-light.css',
+    'primevue/resources/primevue.css',
+    '/node_modules/primeflex/primeflex.css',
+    'primeicons/primeicons.css',
+    '~/assets/scss/main.scss',
+  ],
 
   components: [
     {
@@ -39,19 +51,8 @@ export default defineNuxtConfig({
     preload: true,
   },
 
-  css: [
-    'primevue/resources/themes/lara-light-blue/theme.css',
-    'primevue/resources/primevue.css',
-    '/node_modules/primeflex/primeflex.css',
-    'primeicons/primeicons.css',
-    '~/assets/scss/main.scss',
-  ],
-
   router: {
-    middleware: [
-      'auth',
-      'login'
-    ]
+    middleware: ['auth']
   },
 
   build: {

@@ -15,7 +15,6 @@ const shopifyLoginHandler = async () => {
 }
 
 definePageMeta({
-  middleware: 'login',
   layout: 'logged-out',
 })
 </script>
