@@ -43,9 +43,8 @@ const { payouts, fetchPayablePayoutsHandler } = usePayouts()
       <Column header="Actions" style="width: 10%;" class="text-right">
         <template #body="{ data: { id } }">
           <Button
-            icon="pi pi-arrow-right"
-            class="p-button-rounded p-button-outlined p-button-info"
-            v-tooltip.top="'View details'"
+            label="Details"
+            class="p-button-sm p-button-outlined"
             @click="fetchPayablePayoutsHandler(id)">
           </Button>
         </template>
