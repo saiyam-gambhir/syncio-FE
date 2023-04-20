@@ -1,14 +1,28 @@
 <script setup>
 import { useAuthStore } from '~/stores/auth'
 import { useConnectionsStore } from '~/stores/connections'
-import { useUrlSearchParams } from '@vueuse/core'
 
 /* ----- DATA ----- */
+const { charging, level } = useBattery()
 const { showUpgrade, type } = useUrlSearchParams()
 const { showUpgradeDialogHandler } = useUpgradeDialog()
 const auth = useAuthStore()
 const connections = useConnectionsStore()
 const loading = ref(true)
+const online = useOnline()
+
+/* ----- WATCHER ----- */
+watch(online, () => {
+  if(!online.value) {
+    auth.isNetworkDialogVisible = true
+  }
+})
+
+watch(level, () => {
+  if(level.value < .2 && !charging.value) {
+    auth.isBatteryLowDialogVisible = true
+  }
+})
 
 /* ----- MOUNTED ----- */
 onMounted(async () => {
@@ -35,8 +49,12 @@ onMounted(async () => {
     <section v-if="loading" class="loading-page flex align-items-center justify-content-center">
       <Logo />
     </section>
+
     <div v-else>
+      <LazyBatteryLowDialog :level="level" v-if="auth.isBatteryLowDialogVisible" />
+      <NetworkDialog :online="online" v-if="!online" />
       <Toast position="top-center" successIcon="pi pi-check-circle" />
+
       <div class="min-h-screen flex relative lg:static">
         <Navbar></Navbar>
 

@@ -69,6 +69,11 @@ p {
   }
 }
 
+.p-datatable.p-datatable-gridlines .p-datatable-thead>tr>th {
+  font-size: 1rem !important;
+  text-transform: capitalize !important;
+}
+
 th {
   &.text-right {
     .p-column-header-content {
@@ -468,6 +473,10 @@ input.p-inputtext-lg {
 
 .tabular-nums {
   font-variant-numeric: tabular-nums
+}
+
+td.store-name {
+  letter-spacing: 1.25px;
 }
 
 

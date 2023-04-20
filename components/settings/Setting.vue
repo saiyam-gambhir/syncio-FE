@@ -29,23 +29,23 @@ const props = defineProps({
 
 <template>
   <div class="col-12 lg:col-4 p-3">
-    <div class="border-round shadow-2 surface-0 mb-3 h-full flex-column justify-content-between flex">
+    <div class="border-round flex flex-column h-full justify-content-between mb-3 overflow-hidden shadow-2 surface-0">
       <div class="p-4">
-        <div class="flex align-items-center">
-          <span class="inline-flex border-circle surface-card border-1 align-items-center justify-content-center mr-3" style="width: 38px; height: 38px">
-            <i class="pi text-xl" :class="icon"></i>
+        <div class="align-items-center flex">
+          <span class="align-items-center border-1 border-circle inline-flex justify-content-center mr-3 surface-card" style="height: 38px; width: 38px">
+            <i :class="icon" class="pi text-xl"></i>
           </span>
-          <span class="text-900 font-semibold text-2xl">{{ title }}</span>
+          <span class="font-semibold text-2xl text-900">{{ title }}</span>
         </div>
-        <p class="mb-3 mt-4 text-700 line-height-4">{{ description }}</p>
+        <p class="line-height-4 mb-4 mt-4 text-700">{{ description }}</p>
       </div>
 
-      <div class="px-4 py-3 surface-card text-right border-top-1 surface-border">
-        <NuxtLink v-if="disabled" to="/plan-and-billings">
-          <Button icon="pi pi-arrow-right" iconPos="right" label="Unlock this add-on" class="p-button-outlined"></Button>
+      <div class="border-top-1 px-4 py-3 surface-card surface-border text-right">
+        <NuxtLink to="/plan-and-billings" v-if="disabled">
+          <Button class="p-button-outlined" icon="pi pi-arrow-right" iconPos="right" label="Unlock this add-on"></Button>
         </NuxtLink>
-        <NuxtLink v-else :to="href" >
-          <Button icon="pi pi-arrow-right" iconPos="right" label="More" class="p-button-outlined"></Button>
+        <NuxtLink :to="href" v-else>
+          <Button class="p-button-outlined" icon="pi pi-arrow-right" iconPos="right" label="More"></Button>
         </NuxtLink>
       </div>
     </div>
