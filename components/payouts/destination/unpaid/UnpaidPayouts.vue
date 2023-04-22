@@ -5,6 +5,7 @@ import { usePayouts } from '~/composables/payouts'
 /* ----- DATA ----- */
 const { formatCurrency } = useFilters()
 const { fetchUnpaidPayoutsHandler, payouts } = usePayouts()
+
 const statusOptions = {
   paid: 'success',
   payout_created: 'warning',
@@ -29,7 +30,7 @@ const getStatusText = status => {
 
 <template>
   <section class="page">
-    <DataTable :value="payouts.unPaidPayouts?.items" responsiveLayout="scroll" showGridlines>
+    <DataTable :value="payouts.unPaidPayouts?.items" dataKey="payout_id" responsiveLayout="scroll" showGridlines>
       <Column header="Date (AEST)" style="width: 12.5%;">
         <template #body="{ data: { date } }">
           {{ date }}
@@ -60,8 +61,8 @@ const getStatusText = status => {
         </template>
       </Column>
 
-      <Column header="Actions" style="width: 30%;" class="text-right">
-        <template #body="{ data: { id } }">
+      <Column header="Actions" style="width: 27%;" class="text-right">
+        <template #body="{}">
           <Button
             class="p-button-sm p-button-success mr-3"
             icon="pi pi-check"
@@ -70,8 +71,7 @@ const getStatusText = status => {
           </Button>
           <Button
             label="Manage Payout"
-            class="p-button-sm p-button-outlined"
-            @click="fetchPayablePayoutsHandler(id)">
+            class="p-button-sm p-button-outlined">
           </Button>
         </template>
       </Column>

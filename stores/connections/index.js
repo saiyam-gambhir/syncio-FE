@@ -1,12 +1,5 @@
 import deepmerge from 'deepmerge'
 
-/* ----- ACTIONS ----- */
-import { deleteConnection } from './actions/deleteConnection'
-import { fetchConnections } from './actions/fetchConnections'
-import { fetchCurrentStore } from './actions/fetchCurrentStore'
-import { fetchDestinationLocations } from './actions/fetchDestinationLocations'
-import { toggleMultilocation } from './actions/toggleMultilocation'
-
 export const useConnectionsStore = defineStore('connections', {
   state: () => {
     return {
@@ -78,20 +71,4 @@ export const useConnectionsStore = defineStore('connections', {
     fetchDestinationLocations,
     toggleMultilocation,
   ]),
-
-  // persist: {
-  //   enabled: true,
-  //   strategies: [
-  //     {
-  //       key: 'connections',
-  //       storage: sessionStorage,
-  //       paths: [
-  //         'currentStore',
-  //         'filters',
-  //         'isConnectionDisconnectRequested',
-  //         'selectedConnection',
-  //       ]
-  //     }
-  //   ]
-  // }
 })

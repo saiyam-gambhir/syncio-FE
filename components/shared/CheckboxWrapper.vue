@@ -1,6 +1,4 @@
 <script setup>
-import { ref } from 'vue'
-
 /* ----- EMITS ----- */
 const emits = defineEmits(['onInput'])
 

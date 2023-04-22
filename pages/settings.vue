@@ -56,7 +56,7 @@ const auth = useAuthStore()
             description="Manage your Marketplace profile and settings"
             href="/marketplace-settings"
             icon="pi-shopping-bag"
-            title="Marketplace">
+            title="Marketplace settings">
           </LazySetting>
 
           <LazySetting

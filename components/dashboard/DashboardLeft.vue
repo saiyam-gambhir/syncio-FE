@@ -1,21 +1,3 @@
-<script setup>
-import { useConnectionsStore } from '~/stores/connections'
-import { useFilters } from '~/composables/filters'
-import { useToasts } from '~/composables/toasts'
-
-/* ----- DATA ----- */
-const { copyToClipBoard } = useFilters()
-const { showToast } = useToasts()
-const connections = useConnectionsStore()
-
-const copyStoreKeyHandler = async (val) => {
-  await copyToClipBoard(val)
-  showToast({
-    detail: 'Store key copied successfully'
-  })
-}
-</script>
-
 <template>
   <section class="col-12 md:col-5 lg:col-3">
     <h2 class="pb-2">The essentials</h2>
@@ -27,8 +9,8 @@ const copyStoreKeyHandler = async (val) => {
       title="Unique store key">
       <template #links>
         <h3 class="mb-0 flex align-items-center">
-          {{ connections.storeKey }}
-          <Button icon="pi pi-copy" class="p-button-rounded p-button-text ml-2" @click="copyStoreKeyHandler(connections.storeKey)"></Button>
+          {{ storeKey }}
+          <Button icon="pi pi-copy" class="p-button-rounded p-button-text ml-2" @click="copyStoreKeyHandler(storeKey)"></Button>
         </h3>
       </template>
     </CardWrapper>
@@ -68,3 +50,16 @@ const copyStoreKeyHandler = async (val) => {
     </CardWrapper>
   </section>
 </template>
+
+<script setup>
+/* ----- DATA ----- */
+const { copyToClipBoard } = useFilters()
+const { showToast } = useToasts()
+const { storeKey } = useConnectionsStore()
+
+/* ----- METHODS ----- */
+const copyStoreKeyHandler = async (val) => {
+  await copyToClipBoard(val)
+  showToast({ detail: 'Store key copied successfully' })
+}
+</script>

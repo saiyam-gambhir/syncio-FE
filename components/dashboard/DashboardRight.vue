@@ -1,46 +1,7 @@
-<script setup>
-import { useConnectionsStore } from '@/stores/connections'
-
-/* ----- DATA ----- */
-const connectionsStore = useConnectionsStore()
-const destinationAnnouncements = ref([
-  {
-    className: 'a-woo-shopify',
-    description: ['Use Syncio to connect to Woo stores. Simply connect as you normally would through the stores page.'],
-    externalLink: true,
-    href: '',
-    image: 'woo-shopify.svg',
-    title: 'Sell in more places',
-    features: ['Seamlessly sync inventory between Woo and Shopify', 'It works just like with Shopify to Shopify', 'Less manual work. More time to grow your business.'],
-  },
-  {
-    className: 'a-marketplace',
-    description: ['Syncio Marketplace is coming soon.', 'Find new products and form long term connections with reliable, like-minded partners.'],
-    externalLink: false,
-    href: '/marketplace',
-    image: 'marketplace.svg',
-    title: 'Boost sales with your perfect partner',
-  },
-  {
-    className: 'a-multilocation',
-    description: ['Multi-location allows you to choose where stock syncs to in your destination store.', 'To use Multi-location, activate the toggle on the Stores page.'],
-    externalLink: true,
-    href: 'https://help.syncio.co/en/articles/5842693-multilocations-for-destination-stores',
-    image: 'multilocation.svg',
-    title: 'Sync stock to multiple locations',
-  }
-])
-
-const sourceAnnouncements = ref([
-  destinationAnnouncements.value[0],
-  destinationAnnouncements.value[1]
-])
-</script>
-
 <template>
   <section class="col-12 md:col-7 lg:col-9">
     <h2 class="pb-2">What's New</h2>
-    <Carousel :value="connectionsStore.isSourceStore ? sourceAnnouncements : destinationAnnouncements" :numVisible="1" :numScroll="1" circular :autoplayInterval="5000" :showNavigators="false" class="border-round shadow-2 surface-0 surface-border p-4 pb-3">
+    <Carousel :value="isSourceStore ? sourceAnnouncements : destinationAnnouncements" :numVisible="1" :numScroll="1" circular :autoplayInterval="5000" :showNavigators="false" class="border-round shadow-2 surface-0 surface-border p-4 pb-3">
       <template #item="{ data }">
         <Card class="flex">
           <template #title>{{ data.title }}</template>
@@ -95,3 +56,40 @@ const sourceAnnouncements = ref([
     </CardWrapper>
   </section>
 </template>
+
+<script setup>
+/* ----- DATA ----- */
+const { isSourceStore } = useConnectionsStore()
+const destinationAnnouncements = ref([
+  {
+    className: 'a-woo-shopify',
+    description: ['Use Syncio to connect to Woo stores. Simply connect as you normally would through the stores page.'],
+    externalLink: true,
+    href: '',
+    image: 'woo-shopify.svg',
+    title: 'Sell in more places',
+    features: ['Seamlessly sync inventory between Woo and Shopify', 'It works just like with Shopify to Shopify', 'Less manual work. More time to grow your business.'],
+  },
+  {
+    className: 'a-marketplace',
+    description: ['Syncio Marketplace is coming soon.', 'Find new products and form long term connections with reliable, like-minded partners.'],
+    externalLink: false,
+    href: '/marketplace',
+    image: 'marketplace.svg',
+    title: 'Boost sales with your perfect partner',
+  },
+  {
+    className: 'a-multilocation',
+    description: ['Multi-location allows you to choose where stock syncs to in your destination store.', 'To use Multi-location, activate the toggle on the Stores page.'],
+    externalLink: true,
+    href: 'https://help.syncio.co/en/articles/5842693-multilocations-for-destination-stores',
+    image: 'multilocation.svg',
+    title: 'Sync stock to multiple locations',
+  }
+])
+
+const sourceAnnouncements = ref([
+  destinationAnnouncements.value[0],
+  destinationAnnouncements.value[1]
+])
+</script>

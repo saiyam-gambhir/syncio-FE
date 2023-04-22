@@ -21,18 +21,10 @@ const props = defineProps({
     default: '600px',
   }
 })
-
-/* ----- EMITS ----- */
-const emits = defineEmits(['closeDialog'])
-
-/* ----- METHODS ----- */
-const closeDialogHandler = () => {
-  emits('closeDialog')
-}
 </script>
 
 <template>
-  <Dialog :visible="isVisible" :modal="true" :style="{ width: width }" :dismissableMask="false" @after-hide="closeDialogHandler" :header="title">
+  <Dialog :visible="isVisible" :modal="true" :style="{ width: width }" :dismissableMask="true" :header="title">
     <div class="border-top-1 surface-border pt-4">
       <slot name="body"></slot>
     </div>

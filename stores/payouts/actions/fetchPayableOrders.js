@@ -4,11 +4,8 @@ export const fetchPayableOrders = {
       const { data: { value } } = await useMyFetch(`stores/payout/all-store-data/${storeId}`)
       const { payableOrders, success } = value
       if(success) {
-        this.payableOrders.items = Object.keys(payableOrders).map((key) => {
-          return {
-            ...payableOrders[key],
-            id: +key
-          }
+        this.payableOrders.items = Object.keys(payableOrders).map(key => {
+          return { ...payableOrders[key], id: +key }
         })
       }
     } catch (error) {

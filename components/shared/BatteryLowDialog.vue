@@ -1,25 +1,5 @@
-<script setup>
-import { useAuthStore } from '@/stores/auth'
-
-/* ----- DATA ----- */
-const auth = useAuthStore()
-
-/* ----- PROPS ----- */
-const props = defineProps({
-  level: {
-    type: [Number, String],
-    required: true
-  }
-})
-
-/* ----- METHODS ----- */
-const closeDialogHandler = () => {
-  auth.isBatteryLowDialogVisible = false
-}
-</script>
-
 <template>
-  <DialogWrapper :isVisible="auth.isBatteryLowDialogVisible" title="OOPS!" width="600px" @closeDialog="closeDialogHandler" :showFooter="false">
+  <DialogWrapper :isVisible="isBatteryLowDialogVisible" title="OOPS!" width="600px" :showFooter="false">
     <template #body>
       <div class="text-center">
         <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" baseProfile="tiny" version="1.2" viewBox="0 0 24 24" class="mb-2">
@@ -31,3 +11,24 @@ const closeDialogHandler = () => {
     </template>
   </DialogWrapper>
 </template>
+
+<script setup>
+/* ----- DATA ----- */
+const { isBatteryLowDialogVisible } = useAuthStore()
+
+/* ----- PROPS ----- */
+const props = defineProps({
+  level: {
+    type: [Number, String],
+    required: true
+  }
+})
+
+/* ----- METHODS ----- */
+const closeDialogHandler = () => {
+  auth.$patch({
+		isBatteryLowDialogVisible: false
+	})
+
+}
+</script>

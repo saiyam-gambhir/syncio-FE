@@ -1,7 +1,4 @@
 <script setup>
-import { useAuthStore } from '~/stores/auth'
-import { useConnectionsStore } from '~/stores/connections'
-import { usePayouts } from '~/composables/payouts'
 import { useRouter } from 'vue-router'
 
 /* ----- PAGE META ----- */
@@ -27,7 +24,7 @@ onMounted(async () => {
 })
 
 /* ----- METHODS ----- */
-const tabChangedHandler = (tabIndex) => {
+const tabChangedHandler = tabIndex => {
 	payouts.$patch({
 		activeTabIndex: tabIndex
 	})
@@ -41,6 +38,7 @@ const tabChangedHandler = (tabIndex) => {
 			title="Payouts">
 		</PageHeader>
 
+		<!-- Destination store payouts -->
 		<section v-if="isDestinationStore" class="payouts mt-4">
 			<LazyDestinationTabs
 				:activeTabIndex="payouts.activeTabIndex"
@@ -50,14 +48,15 @@ const tabChangedHandler = (tabIndex) => {
 			<div v-if="payouts.activeTabIndex === 0">
 				<LazyPayableOrders />
 			</div>
-			<div v-if="payouts.activeTabIndex === 1">
+			<div v-else-if="payouts.activeTabIndex === 1">
 				<LazyUnpaidPayouts />
 			</div>
-			<div v-if="payouts.activeTabIndex === 2">
+			<div v-else-if="payouts.activeTabIndex === 2">
 				<LazyPaidPayouts />
 			</div>
 		</section>
 
+    <!-- Source store payouts -->
 		<section v-if="isSourceStore" class="payouts mt-4">
 			<SourceTabs
 				:activeTabIndex="payouts.activeTabIndex"
@@ -65,7 +64,7 @@ const tabChangedHandler = (tabIndex) => {
 			</SourceTabs>
 
 			<div v-if="payouts.activeTabIndex === 0"></div>
-			<div v-if="payouts.activeTabIndex === 1"></div>
+			<div v-else-if="payouts.activeTabIndex === 1"></div>
 		</section>
 	</section>
 </template>

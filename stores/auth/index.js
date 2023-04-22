@@ -1,18 +1,10 @@
 import deepmerge from 'deepmerge'
 
-/* ----- ACTIONS ----- */
-import { fetchCurrentPlan } from './actions/fetchCurrentPlan'
-// import { fetchPlans } from './actions/fetchPlans'
-import { fetchUser } from '~/stores/auth/actions/fetchUser'
-// import { forgotPassword } from './actions/forgotPassword'
-import { login } from '~/stores/auth/actions/login'
-import { shopifyLogin } from '~/stores/auth/actions/shopifyLogin'
-
 export const useAuthStore = defineStore('auth', {
   state: () => {
     return {
       currency: 'USD',
-      forgotPasswordForm: { email: 'saiyam+111@syncio.co', emailNotFound: false, emailSent: false, loading: false, submitted: false },
+      forgotPasswordForm: { email: '', emailNotFound: false, emailSent: false, loading: false, submitted: false },
       isAuthenticated: false,
       isBatteryLowDialogVisible: false,
       isNetworkDialogVisible: false,
@@ -72,14 +64,10 @@ export const useAuthStore = defineStore('auth', {
 
   actions: deepmerge.all([
     fetchCurrentPlan,
-    // fetchPlans,
+    fetchPlans,
     fetchUser,
-    // forgotPassword,
+    forgotPassword,
     login,
     shopifyLogin,
   ]),
-
-  // persist: {
-  //   storage: persistedState.sessionStorage,
-  // },
 })

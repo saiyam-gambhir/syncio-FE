@@ -1,11 +1,6 @@
 import { defineStore } from 'pinia'
 import deepmerge from 'deepmerge'
 
-/* ----- ACTIONS ----- */
-import { fetchPayableOrders } from '~/stores/payouts/actions/fetchPayableOrders'
-import { fetchPayablePayouts } from '~/stores/payouts/actions/fetchPayablePayouts'
-import { fetchUnpaidPayouts } from '~/stores/payouts/actions/fetchUnpaidPayouts'
-
 export const usePayoutsStore = defineStore('payouts', {
   state: () => {
     return {
@@ -22,12 +17,9 @@ export const usePayoutsStore = defineStore('payouts', {
   },
 
   actions: deepmerge.all([
+    fetchPaidPayouts,
     fetchPayableOrders,
     fetchPayablePayouts,
     fetchUnpaidPayouts,
   ]),
-
-  persist: {
-    storage: persistedState.sessionStorage,
-  },
 })

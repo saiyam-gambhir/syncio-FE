@@ -1,5 +1,5 @@
-import { usePayoutsStore } from '~/stores/payouts'
 import { useConnectionsStore } from '~/stores/connections'
+import { usePayoutsStore } from '~/stores/payouts'
 
 export function usePayouts() {
   const { storeId } = useConnectionsStore()
@@ -18,7 +18,12 @@ export function usePayouts() {
     await payouts.fetchUnpaidPayouts()
   }
 
+  const fetchPaidPayoutsHandler = async () => {
+    await payouts.fetchPaidPayouts()
+  }
+
   return {
+    fetchPaidPayoutsHandler,
     fetchPayableOrdersHandler,
     fetchPayablePayoutsHandler,
     fetchUnpaidPayoutsHandler,

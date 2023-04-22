@@ -4,16 +4,27 @@ import { usePayouts } from '~/composables/payouts'
 
 /* ----- DATA ----- */
 const { formatCurrency } = useFilters()
-const { payouts } = usePayouts()
+const { fetchPaidPayoutsHandler, payouts } = usePayouts()
 const statusOptions = {
   paid: 'success',
   payout_created: 'warning',
   unpaid: 'warning',
 }
+const selectionMode = ref('multiple')
+const cars = ref([
+  { vin: 'a1653d4d', year: 1998, brand: 'VW', color: 'White' },
+  { vin: 'ddeb9b10', year: 1985, brand: 'Toyota', color: 'Green' },
+  { vin: 'd8ebe413', year: 1982, brand: 'Renault', color: 'Blue' },
+  { vin: 'aab227b7', year: 1995, brand: 'BMW', color: 'Black' },
+  { vin: '631f7412', year: 2000, brand: 'Mercedes', color: 'White' },
+  { vin: '7d2d22b0', year: 2013, brand: 'Jaguar', color: 'Silver' },
+  { vin: 'de0d8870', year: 1990, brand: 'Ford', color: 'Black' },
+  { vin: '6c2f2dce', year: 1992, brand: 'VW', color: 'Indigo' },
+])
 
 /* ----- MOUNTED ----- */
 onMounted(async () => {
-  //await fetchUnpaidPayoutsHandler()
+  await fetchPaidPayoutsHandler()
 })
 
 /* ----- METHODS ----- */
@@ -22,7 +33,7 @@ const getStatus = status => {
 }
 
 const getStatusText = status => {
-  if(status === 'payout_confirmed') return 'Received'
+  if(status === 'payment_confirmed') return 'Received'
   return status
 }
 </script>
@@ -61,17 +72,10 @@ const getStatusText = status => {
       </Column>
 
       <Column header="Actions" style="width: 30%;" class="text-right">
-        <template #body="{ data: { id } }">
-          <Button
-            class="p-button-sm p-button-success mr-3"
-            icon="pi pi-check"
-            iconPos="left"
-            label="Mark as Paid">
-          </Button>
+        <template #body="{}">
           <Button
             label="Manage Payout"
-            class="p-button-sm p-button-outlined"
-            @click="fetchPayablePayoutsHandler(id)">
+            class="p-button-sm p-button-outlined">
           </Button>
         </template>
       </Column>
