@@ -1,3 +1,10 @@
+<template>
+	<PageHeader
+		content="Push your orders with synced products to connected source stores"
+		title="Orders">
+	</PageHeader>
+</template>
+
 <script setup>
 /* ----- PAGE META ----- */
 definePageMeta({
@@ -6,10 +13,3 @@ definePageMeta({
   layout: 'logged-in',
 })
 </script>
-
-<template>
-	<PageHeader
-		content="Push your orders with synced products to connected source stores"
-		title="Orders">
-	</PageHeader>
-</template>

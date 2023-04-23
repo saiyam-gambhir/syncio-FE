@@ -1,24 +1,3 @@
-<script setup>
-import { useAuthStore } from '~/stores/auth/'
-
-/* ----- DATA ----- */
-const auth = useAuthStore()
-
-/* ----- METHODS ----- */
-const loginHandler = () => {
-  const { email, password } = auth.loginForm
-  auth.login({ email, password })
-}
-
-const shopifyLoginHandler = async () => {
-  await auth.shopifyLogin('shopify', 'test-destination-19.myshopify.com')
-}
-
-definePageMeta({
-  layout: 'logged-out',
-})
-</script>
-
 <template>
   <section class="page">
     <div class="flex align-items-center justify-content-between">
@@ -55,3 +34,22 @@ definePageMeta({
     </form>
   </section>
 </template>
+
+<script setup>
+/* ----- DATA ----- */
+const auth = useAuthStore()
+
+/* ----- METHODS ----- */
+const loginHandler = () => {
+  const { email, password } = auth.loginForm
+  auth.login({ email, password })
+}
+
+const shopifyLoginHandler = async () => {
+  await auth.shopifyLogin('shopify', 'test-destination-19.myshopify.com')
+}
+
+definePageMeta({
+  layout: 'logged-out',
+})
+</script>

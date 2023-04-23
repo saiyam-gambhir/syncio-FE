@@ -61,7 +61,7 @@ const getStatusText = status => {
         </template>
       </Column>
 
-      <Column header="Actions" style="width: 27%;" class="text-right">
+      <Column header="Actions" style="width: 30%;" class="text-right">
         <template #body="{}">
           <Button
             class="p-button-sm p-button-success mr-3"
