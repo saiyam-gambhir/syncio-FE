@@ -1,7 +1,5 @@
 <script setup>
 import { DateTime } from 'luxon'
-import { ref, onMounted, } from 'vue'
-import { useAuthStore } from '@/stores/auth'
 
 /* ----- DATA ----- */
 const { timeZone } = useAuthStore()

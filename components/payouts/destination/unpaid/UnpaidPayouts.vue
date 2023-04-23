@@ -1,11 +1,7 @@
 <script setup>
-import { useFilters } from '~/composables/filters'
-import { usePayouts } from '~/composables/payouts'
-
 /* ----- DATA ----- */
-const { formatCurrency } = useFilters()
 const { fetchUnpaidPayoutsHandler, payouts } = usePayouts()
-
+const { formatCurrency } = useFilters()
 const statusOptions = {
   paid: 'success',
   payout_created: 'warning',

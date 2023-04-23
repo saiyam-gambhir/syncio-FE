@@ -1,3 +1,23 @@
+<script setup>
+/* ----- DATA ----- */
+const { closeDialogHandler, goToPlanSelectionPage, showUpgradeDialogHandler } = useUpgradeDialog()
+const {
+  isOrderModuleAvailable,
+  isPayoutsModuleAvailable,
+  isUpgradeDialogRequested,
+  showOrdersUpgradeDialog,
+  showPayoutsUpgradeDialog,
+  showProductSettingsUpgradeDialog,
+} = useAuthStore()
+const { isConnectionStatusPending, isDestinationStore } = useConnectionsStore()
+const route = useRoute()
+
+/* ----- COMPUTED ----- */
+const isPathSettings = computed(() => {
+  return route.name === 'product-settings'
+})
+</script>
+
 <template>
   <div class="surface-card h-screen hidden lg:block flex-shrink-0 absolute lg:static left-0 top-0 z-1 border-right-1 surface-border select-none" style="width: 19rem">
     <div class="flex flex-column h-full">
@@ -98,34 +118,3 @@
     </div>
   </div>
 </template>
-
-<script setup>
-import { useRoute } from 'vue-router'
-
-/* ----- DATA ----- */
-const {
-  closeDialogHandler,
-  goToPlanSelectionPage,
-  showUpgradeDialogHandler
-} = useUpgradeDialog()
-
-const {
-  isOrderModuleAvailable,
-  isPayoutsModuleAvailable,
-  isUpgradeDialogRequested,
-  showOrdersUpgradeDialog,
-  showPayoutsUpgradeDialog,
-  showProductSettingsUpgradeDialog,
-} = useAuthStore()
-
-const {
-  isConnectionStatusPending,
-  isDestinationStore
-} = useConnectionsStore()
-
-const route = useRoute()
-
-const isPathSettings = computed(() => {
-  return route.name === 'product-settings'
-})
-</script>

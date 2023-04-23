@@ -1,3 +1,14 @@
+<script setup>
+/* ----- DATA ----- */
+const { storeType } = useConnectionsStore()
+const router = useRouter()
+
+/* ----- METHODS ----- */
+const goBackHandler = () => {
+  window.history.length > 1 ? router.back() : navigateTo('/')
+}
+</script>
+
 <template>
   <header class="header-height surface-section border-bottom-1 surface-border flex align-items-center justify-content-between px-5">
     <div class="header-left">
@@ -9,14 +20,3 @@
     </div>
   </header>
 </template>
-
-<script setup>
-/* ----- DATA ----- */
-const { storeType } = useConnectionsStore()
-const router = useRouter()
-
-/* ----- METHODS ----- */
-const goBackHandler = () => {
-  window.history.length > 1 ? router.back() : navigateTo('/')
-}
-</script>

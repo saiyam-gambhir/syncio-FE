@@ -1,8 +1,5 @@
 <script setup>
-import { useFilters } from '~/composables/filters'
-import { usePayouts } from '~/composables/payouts'
-
-/* ===== DATA ===== */
+/* ----- DATA ----- */
 const { formatCommission, formatCurrency } = useFilters()
 const { payouts, fetchPayablePayoutsHandler } = usePayouts()
 </script>

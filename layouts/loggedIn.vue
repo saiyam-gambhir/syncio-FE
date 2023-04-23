@@ -1,7 +1,4 @@
 <script setup>
-import { useAuthStore } from '~/stores/auth'
-import { useConnectionsStore } from '~/stores/connections'
-
 /* ----- DATA ----- */
 const { charging, level } = useBattery()
 const { showUpgrade, type } = useUrlSearchParams()
@@ -63,7 +60,7 @@ onMounted(async () => {
 
           <div class="flex flex-auto flex-column router-view mx-auto">
             <div class="flex-auto surface-section p-5 pt-4">
-              <NuxtPage></NuxtPage>
+              <NuxtPage />
             </div>
           </div>
         </div>

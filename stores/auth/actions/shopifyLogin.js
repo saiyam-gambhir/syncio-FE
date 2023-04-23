@@ -2,7 +2,6 @@
  * @param {string} platform - The name of the platform the user is logging in with.
  * @param {string} storeName - The name of the store the user is logging in to.
  */
-import { useConnectionsStore } from '~/stores/connections'
 import * as routes from '@/routes'
 
 export const shopifyLogin = {

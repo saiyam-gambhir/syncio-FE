@@ -1,26 +1,12 @@
 <script setup>
-import { useFilters } from '~/composables/filters'
-import { usePayouts } from '~/composables/payouts'
-
 /* ----- DATA ----- */
-const { formatCurrency } = useFilters()
 const { fetchPaidPayoutsHandler, payouts } = usePayouts()
+const { formatCurrency } = useFilters()
 const statusOptions = {
   paid: 'success',
   payout_created: 'warning',
   unpaid: 'warning',
 }
-const selectionMode = ref('multiple')
-const cars = ref([
-  { vin: 'a1653d4d', year: 1998, brand: 'VW', color: 'White' },
-  { vin: 'ddeb9b10', year: 1985, brand: 'Toyota', color: 'Green' },
-  { vin: 'd8ebe413', year: 1982, brand: 'Renault', color: 'Blue' },
-  { vin: 'aab227b7', year: 1995, brand: 'BMW', color: 'Black' },
-  { vin: '631f7412', year: 2000, brand: 'Mercedes', color: 'White' },
-  { vin: '7d2d22b0', year: 2013, brand: 'Jaguar', color: 'Silver' },
-  { vin: 'de0d8870', year: 1990, brand: 'Ford', color: 'Black' },
-  { vin: '6c2f2dce', year: 1992, brand: 'VW', color: 'Indigo' },
-])
 
 /* ----- MOUNTED ----- */
 onMounted(async () => {

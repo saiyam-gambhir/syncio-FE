@@ -1,5 +1,3 @@
-import { useConnectionsStore } from '~/stores/connections'
-
 export const login = {
   async login(payload) {
     this.loginForm.loading = true

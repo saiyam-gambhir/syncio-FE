@@ -1,6 +1,4 @@
 <script setup>
-import { useRouter } from 'vue-router'
-
 /* ----- DATA ----- */
 const router = useRouter()
 

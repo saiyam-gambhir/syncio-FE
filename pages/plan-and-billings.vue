@@ -1,10 +1,3 @@
-<template>
-	<PageHeader
-		content="Upgrade or downgrade anytime. Contact us for help"
-		title="Manage Your Plan">
-	</PageHeader>
-</template>
-
 <script setup>
 /* ----- PAGE META ----- */
 definePageMeta({
@@ -13,3 +6,10 @@ definePageMeta({
   layout: 'logged-in',
 })
 </script>
+
+<template>
+	<PageHeader
+		content="Upgrade or downgrade anytime. Contact us for help"
+		title="Manage Your Plan">
+	</PageHeader>
+</template>

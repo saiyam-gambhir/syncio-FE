@@ -1,3 +1,16 @@
+<script setup>
+/* ----- DATA ----- */
+const { copyToClipBoard } = useFilters()
+const { showToast } = useToasts()
+const { storeKey } = useConnectionsStore()
+
+/* ----- METHODS ----- */
+const copyStoreKeyHandler = async (val) => {
+  await copyToClipBoard(val)
+  showToast({ detail: 'Store key copied successfully' })
+}
+</script>
+
 <template>
   <section class="col-12 md:col-5 lg:col-3">
     <h2 class="pb-2">The essentials</h2>
@@ -50,16 +63,3 @@
     </CardWrapper>
   </section>
 </template>
-
-<script setup>
-/* ----- DATA ----- */
-const { copyToClipBoard } = useFilters()
-const { showToast } = useToasts()
-const { storeKey } = useConnectionsStore()
-
-/* ----- METHODS ----- */
-const copyStoreKeyHandler = async (val) => {
-  await copyToClipBoard(val)
-  showToast({ detail: 'Store key copied successfully' })
-}
-</script>

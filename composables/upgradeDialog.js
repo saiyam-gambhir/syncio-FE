@@ -1,5 +1,3 @@
-import { useAuthStore } from '~/stores/auth'
-import { useRoute, useRouter } from 'vue-router'
 import * as routes from '~/routes'
 
 export function useUpgradeDialog() {

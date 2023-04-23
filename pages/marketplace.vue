@@ -1,5 +1,3 @@
-<template></template>
-
 <script setup>
 /* ----- PAGE META ----- */
 definePageMeta({
@@ -8,3 +6,5 @@ definePageMeta({
   layout: 'logged-in',
 })
 </script>
+
+<template></template>

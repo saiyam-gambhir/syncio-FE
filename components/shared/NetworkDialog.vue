@@ -1,6 +1,4 @@
 <script setup>
-import { useAuthStore } from '@/stores/auth'
-
 /* ----- DATA ----- */
 const auth = useAuthStore()
 

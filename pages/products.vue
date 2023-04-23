@@ -1,10 +1,3 @@
-<template>
-	<PageHeader
-		content="Sync and manage your inventory"
-		title="Products">
-	</PageHeader>
-</template>
-
 <script setup>
 /* ----- PAGE META ----- */
 definePageMeta({
@@ -13,3 +6,10 @@ definePageMeta({
   layout: 'logged-in',
 })
 </script>
+
+<template>
+	<PageHeader
+		content="Sync and manage your inventory"
+		title="Products">
+	</PageHeader>
+</template>

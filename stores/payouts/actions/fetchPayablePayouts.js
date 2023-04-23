@@ -1,5 +1,3 @@
-import { useConnectionsStore } from '~/stores/connections'
-
 export const fetchPayablePayouts = {
   async fetchPayablePayouts({ targetStoreId }, page = 1) {
     try {

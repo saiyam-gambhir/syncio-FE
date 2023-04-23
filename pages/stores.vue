@@ -1,10 +1,3 @@
-<template>
-	<PageHeader
-		content="Manage your connected stores"
-		title="Stores">
-	</PageHeader>
-</template>
-
 <script setup>
 /* ----- PAGE META ----- */
 definePageMeta({
@@ -13,3 +6,10 @@ definePageMeta({
   layout: 'logged-in',
 })
 </script>
+
+<template>
+	<PageHeader
+		content="Manage your connected stores"
+		title="Stores">
+	</PageHeader>
+</template>

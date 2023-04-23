@@ -1,3 +1,37 @@
+<script setup>
+/* ----- PAGE META ----- */
+definePageMeta({
+	middleware: 'auth',
+	requiredAuth: true,
+  layout: 'logged-in',
+})
+
+/*----- DATA----- */
+const { fetchPayableOrdersHandler, payouts } = usePayouts()
+const { isDestinationStore, isSourceStore } = useConnectionsStore()
+const { isPayoutsModuleAvailable } = useAuthStore()
+
+/*----- MOUNTED----- */
+onMounted(async () => {
+	if(!isPayoutsModuleAvailable) {
+		navigateTo({
+			path: '/',
+			query: { showUpgrade: 'true', type: 'payouts' }
+		})
+		return
+  }
+
+  await fetchPayableOrdersHandler()
+})
+
+/* ----- METHODS ----- */
+const tabChangedHandler = tabIndex => {
+	payouts.$patch({
+		activeTabIndex: tabIndex
+	})
+}
+</script>
+
 <template>
 	<section class="page">
 		<PageHeader
@@ -35,36 +69,3 @@
 		</section>
 	</section>
 </template>
-
-<script setup>
-import { useRouter } from 'vue-router'
-
-/* ----- PAGE META ----- */
-definePageMeta({
-	middleware: 'auth',
-	requiredAuth: true,
-  layout: 'logged-in',
-})
-
-/*----- DATA----- */
-const { fetchPayableOrdersHandler, payouts } = usePayouts()
-const { isDestinationStore, isSourceStore } = useConnectionsStore()
-const auth = useAuthStore()
-const router = useRouter()
-
-/*----- MOUNTED----- */
-onMounted(async () => {
-	if(!auth.isOrderModuleAvailable) {
-    router.push({ path: '/', query: { showUpgrade: 'true', type: 'payouts' }})
-    return
-  }
-  await fetchPayableOrdersHandler()
-})
-
-/* ----- METHODS ----- */
-const tabChangedHandler = tabIndex => {
-	payouts.$patch({
-		activeTabIndex: tabIndex
-	})
-}
-</script>

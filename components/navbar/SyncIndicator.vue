@@ -1,3 +1,10 @@
+<script setup>
+/* ----- DATA ----- */
+const { productsSynced, productsSyncedLimit } = useAuthStore()
+const knobSize = ref(125)
+const knobStroke = ref(15)
+</script>
+
 <template>
   <div class="mt-auto text-center pt-4 surface-border border-top-1 surface-section pb-4">
     <h2>Products Synced</h2>
@@ -22,14 +29,3 @@
     </NuxtLink>
   </div>
 </template>
-
-<script setup>
-/* ----- DATA ----- */
-const {
-  productsSynced,
-  productsSyncedLimit,
-} = useAuthStore()
-
-const knobSize = ref(125)
-const knobStroke = ref(15)
-</script>

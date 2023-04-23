@@ -1,10 +1,7 @@
-import { useConnectionsStore } from '~/stores/connections'
-import { usePayoutsStore } from '~/stores/payouts'
-
 export function usePayouts() {
+  const { showToast } = useToasts()
   const { storeId } = useConnectionsStore()
   const payouts = usePayoutsStore()
-  const { showToast } = useToasts()
 
   const fetchPayableOrdersHandler = async () => {
     await payouts.fetchPayableOrders(storeId)

@@ -1,3 +1,15 @@
+<script setup>
+/* ----- PAGE META ----- */
+definePageMeta({
+	middleware: 'auth',
+	requiredAuth: true,
+  layout: 'logged-in',
+})
+
+/* ----- DATA ----- */
+const auth = useAuthStore()
+</script>
+
 <template>
   <section class="page">
     <PageHeader
@@ -56,15 +68,3 @@
     </section>
   </section>
 </template>
-
-<script setup>
-/* ----- PAGE META ----- */
-definePageMeta({
-	middleware: 'auth',
-	requiredAuth: true,
-  layout: 'logged-in',
-})
-
-/* ----- DATA ----- */
-const auth = useAuthStore()
-</script>

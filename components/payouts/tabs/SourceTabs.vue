@@ -1,3 +1,21 @@
+<script setup>
+/* ----- PROPS ----- */
+const props = defineProps({
+  activeTabIndex: {
+    type: [Number, String],
+    required: true
+  }
+})
+
+/* ----- EMITS ----- */
+const emits = defineEmits(['tabChanged'])
+
+/* ----- METHODS ----- */
+const tabChangedHandler = (index) => {
+  emits('tabChanged', index)
+}
+</script>
+
 <template>
   <ul class="surface-card p-0 m-0 list-none flex overflow-x-auto select-none">
     <li class="pr-3">
@@ -16,21 +34,3 @@
     </li>
   </ul>
 </template>
-
-<script setup>
-/* ----- PROPS ----- */
-const props = defineProps({
-  activeTabIndex: {
-    type: [Number, String],
-    required: true
-  }
-})
-
-/* ----- EMITS ----- */
-const emits = defineEmits(['tabChanged'])
-
-/* ----- METHODS ----- */
-const tabChangedHandler = (index) => {
-  emits('tabChanged', index)
-}
-</script>
