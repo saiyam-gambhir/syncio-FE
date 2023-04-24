@@ -26,7 +26,14 @@ const getStatusText = status => {
 
 <template>
   <section class="page">
-    <DataTable :value="payouts.paidPayouts?.items" responsiveLayout="scroll" showGridlines>
+    <PaidPayoutsSkeleton v-if="payouts.paidPayouts.loading" />
+    <DataTable v-else :value="payouts.paidPayouts?.items" responsiveLayout="scroll" showGridlines>
+
+      <template #empty v-if="!payouts.unPaidPayouts.loading">
+        <h3>You have no Paid payouts to show at this time</h3>
+        <AppLink link="https://help.syncio.co/en/articles/6398970-payouts-add-on-destination-store-side" label="Learn more about payouts" />
+      </template>
+
       <Column header="Date (AEST)" style="width: 12.5%;">
         <template #body="{ data: { date } }">
           {{ date }}

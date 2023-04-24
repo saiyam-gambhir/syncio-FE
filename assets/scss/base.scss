@@ -87,6 +87,10 @@ td {
     .p-speeddial {
       display: inline-flex;
     }
+
+    .p-skeleton {
+      float: right;
+    }
   }
 }
 
@@ -395,6 +399,13 @@ input.p-inputtext-lg {
       max-width: 100%;
       transform: translateX(-5rem);
     }
+  }
+}
+
+.p-datatable-emptymessage {
+  > td {
+    text-align: center !important;
+    height: 250px;
   }
 }
 /* ----- OVERRIDES ----- */

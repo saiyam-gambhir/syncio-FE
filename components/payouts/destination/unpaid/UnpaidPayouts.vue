@@ -1,6 +1,6 @@
 <script setup>
 /* ----- DATA ----- */
-const { fetchUnpaidPayoutsHandler, payouts } = usePayouts()
+const { fetchUnpaidPayoutsHandler, updatePayoutHandler, payouts } = usePayouts()
 const { formatCurrency } = useFilters()
 const statusOptions = {
   paid: 'success',
@@ -26,7 +26,14 @@ const getStatusText = status => {
 
 <template>
   <section class="page">
-    <DataTable :value="payouts.unPaidPayouts?.items" dataKey="payout_id" responsiveLayout="scroll" showGridlines>
+    <UnpaidPayoutsSkeleton v-if="payouts.unPaidPayouts.loading" />
+    <DataTable v-else :value="payouts.unPaidPayouts.items" dataKey="payout_id" responsiveLayout="scroll" showGridlines>
+
+      <template #empty v-if="!payouts.unPaidPayouts.loading">
+        <h3>You have no Unpaid payouts to show at this time</h3>
+        <AppLink link="https://help.syncio.co/en/articles/6398970-payouts-add-on-destination-store-side" label="Learn more about payouts" />
+      </template>
+
       <Column header="Date (AEST)" style="width: 12.5%;">
         <template #body="{ data: { date } }">
           {{ date }}
@@ -58,8 +65,9 @@ const getStatusText = status => {
       </Column>
 
       <Column header="Actions" style="width: 30%;" class="text-right">
-        <template #body="{}">
+        <template #body="{ data: { payout_id } }">
           <Button
+            @click="updatePayoutHandler({ payout_id: payout_id, status: 'paid', activeTabIndex: 2 })"
             class="p-button-sm p-button-success mr-3"
             icon="pi pi-check"
             iconPos="left"
@@ -71,6 +79,7 @@ const getStatusText = status => {
           </Button>
         </template>
       </Column>
+
     </DataTable>
   </section>
 </template>

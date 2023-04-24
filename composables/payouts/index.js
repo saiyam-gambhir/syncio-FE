@@ -2,21 +2,41 @@ export function usePayouts() {
   const { showToast } = useToasts()
   const { storeId } = useConnectionsStore()
   const payouts = usePayoutsStore()
+  const {
+    fetchPaidPayouts,
+    fetchPayableOrders,
+    fetchPayablePayouts,
+    fetchUnpaidPayouts,
+    updatePayout,
+  } = usePayoutsStore()
 
   const fetchPayableOrdersHandler = async () => {
-    await payouts.fetchPayableOrders(storeId)
+    await fetchPayableOrders(storeId)
   }
 
   const fetchPayablePayoutsHandler = async targetStoreId => {
-    await payouts.fetchPayablePayouts({ targetStoreId })
+    await fetchPayablePayouts({ targetStoreId })
   }
 
   const fetchUnpaidPayoutsHandler = async () => {
-    await payouts.fetchUnpaidPayouts()
+    payouts.$patch({
+      queries: { 'filters[status]': 'unpaid' }
+    })
+    await fetchUnpaidPayouts()
   }
 
   const fetchPaidPayoutsHandler = async () => {
-    await payouts.fetchPaidPayouts()
+    payouts.$patch({
+      queries: { 'filters[status]': 'paid_received' }
+    })
+    await fetchPaidPayouts()
+  }
+
+  const updatePayoutHandler = async ({ payout_id, status, activeTabIndex }) => {
+    const payload = { current_store_id: storeId, payout_id, status }
+    const message = await updatePayout(payload)
+    payouts.$patch({ activeTabIndex })
+    showToast({ message })
   }
 
   return {
@@ -25,5 +45,6 @@ export function usePayouts() {
     fetchPayablePayoutsHandler,
     fetchUnpaidPayoutsHandler,
     payouts,
+    updatePayoutHandler,
   }
 }

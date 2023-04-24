@@ -28,7 +28,7 @@ export default defineNuxtConfig({
     '~/theme/theme-light.css',
     'primevue/resources/primevue.css',
     '/node_modules/primeflex/primeflex.css',
-    //'primeicons/primeicons.css',
+    'primeicons/primeicons.css',
     '~/assets/scss/main.scss',
   ],
 
