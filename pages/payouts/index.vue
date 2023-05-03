@@ -1,13 +1,14 @@
 <script setup>
 /* ----- PAGE META ----- */
 definePageMeta({
+	layout: 'logged-in',
 	middleware: 'auth',
 	requiredAuth: true,
-  layout: 'logged-in',
 })
 
 /*----- DATA----- */
-const { fetchPayableOrdersHandler, payouts } = usePayouts()
+const { activeTabIndex, isViewingPayableOrders, setStatusFilter, setActiveTab } = usePayoutsStore()
+const { fetchPayableOrdersHandler } = usePayouts()
 const { isDestinationStore, isSourceStore } = useConnectionsStore()
 const { isPayoutsModuleAvailable } = useAuthStore()
 
@@ -21,14 +22,13 @@ onMounted(async () => {
 		return
   }
 
+  setStatusFilter('unpaid')
   await fetchPayableOrdersHandler()
 })
 
 /* ----- METHODS ----- */
-const tabChangedHandler = tabIndex => {
-	payouts.$patch({
-		activeTabIndex: tabIndex
-	})
+const tabChangedHandler = (index) => {
+  setActiveTab(index)
 }
 </script>
 
@@ -42,30 +42,31 @@ const tabChangedHandler = tabIndex => {
 		<!-- Destination store payouts -->
 		<section v-if="isDestinationStore" class="payouts mt-4">
 			<LazyDestinationTabs
-				:activeTabIndex="payouts.activeTabIndex"
-				@tabChanged="tabChangedHandler">
+				:activeTabIndex="activeTabIndex"
+				@tabChanged="tabChangedHandler()">
 			</LazyDestinationTabs>
 
-			<div v-if="payouts.activeTabIndex === 0">
-				<LazyPayableOrders />
+			<div v-if="activeTabIndex === 0">
+				<LazyPayableOrders v-if="isViewingPayableOrders" />
+        <LazyPayablePayouts v-else />
 			</div>
-			<div v-else-if="payouts.activeTabIndex === 1">
+			<div v-else-if="activeTabIndex === 1">
 				<LazyUnpaidPayouts />
 			</div>
-			<div v-else-if="payouts.activeTabIndex === 2">
+			<div v-else-if="activeTabIndex === 2">
 				<LazyPaidPayouts />
 			</div>
 		</section>
 
     <!-- Source store payouts -->
 		<section v-if="isSourceStore" class="payouts mt-4">
-			<SourceTabs
-				:activeTabIndex="payouts.activeTabIndex"
+			<LazySourceTabs
+				:activeTabIndex="activeTabIndex"
 				@tabChanged="tabChangedHandler">
-			</SourceTabs>
+			</LazySourceTabs>
 
-			<div v-if="payouts.activeTabIndex === 0"></div>
-			<div v-else-if="payouts.activeTabIndex === 1"></div>
+			<div v-if="activeTabIndex === 0"></div>
+			<div v-else-if="activeTabIndex === 1"></div>
 		</section>
 	</section>
 </template>

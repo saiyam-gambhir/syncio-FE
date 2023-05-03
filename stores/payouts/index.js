@@ -5,6 +5,7 @@ export const usePayoutsStore = defineStore('payouts', {
     return {
       activeTabIndex: 0,
       dashboardStats: null,
+      isViewingPayableOrders: true,
       limiter: 10,
       completePayouts: { items: [], pagination: {} },
       openPayouts: { items: [], pagination: {} },
@@ -19,10 +20,16 @@ export const usePayoutsStore = defineStore('payouts', {
   },
 
   actions: deepmerge.all([
+    // API
     fetchPaidPayouts,
     fetchPayableOrders,
     fetchPayablePayouts,
     fetchUnpaidPayouts,
     updatePayout,
+
+    // UI
+    hidePayableOrders,
+    setActiveTab,
+    setStatusFilter,
   ]),
 })

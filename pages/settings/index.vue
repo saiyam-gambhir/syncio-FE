@@ -29,7 +29,7 @@ const auth = useAuthStore()
 
           <LazySetting
             description="Manage and upgrade your base plan and add ons"
-            href="/plan-and-billings"
+            href="/settings/plan-and-billings"
             icon="pi-file"
             title="Plan and billing">
           </LazySetting>
@@ -66,5 +66,6 @@ const auth = useAuthStore()
         </div>
       </div>
     </section>
+
   </section>
 </template>

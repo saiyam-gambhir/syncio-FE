@@ -22,42 +22,39 @@ export const useAuthStore = defineStore('auth', {
   },
 
   getters: {
-    productsSynced({ plan }) {
-      return +plan?.product_mappers_count
+    productsSynced({ plan = {} }) {
+      return Number.parseInt(plan?.product_mappers_count, 10) || 0
     },
 
-    productsSyncedLimit({ plan }) {
-      return +plan?.syncio_plan?.sync_product_limit
+    productsSyncedLimit({ plan = {} }) {
+      return Number.parseInt(plan?.syncio_plan?.sync_product_limit, 10) || 0
     },
 
-    userId({ user }) {
+    userId({ user = {} }) {
       return user?.id
     },
 
-    isOrderModuleAvailable({ plan }) {
-      let ordersPlan = plan.active_addons.filter(plan => plan.name === 'Orders')
-      return ordersPlan.length === 1
+    isOrderModuleAvailable({ plan = { active_addons: [] } }) {
+      return plan.active_addons.some(addon => addon.name === 'Orders')
     },
 
-    isPayoutsModuleAvailable({ plan }) {
-      let payoutsPlan = plan.active_addons.filter(plan => plan.name === 'Payouts')
-      return payoutsPlan.length === 1
+    isPayoutsModuleAvailable({ plan = { active_addons: [] } }) {
+      return plan.active_addons.some(addon => addon.name === 'Payouts')
     },
 
-    isProductModuleAvailable({ plan }) {
-      let settingsPlan = plan.active_addons.filter(plan => plan.name === 'Product Settings')
-      return settingsPlan.length === 1
+    isProductModuleAvailable({ plan = { active_addons: [] } }) {
+      return plan.active_addons.some(addon => addon.name === 'Product Settings')
     },
 
-    showOrdersUpgradeDialog({ upgradeDialogType }) {
+    showOrdersUpgradeDialog({ upgradeDialogType = '' }) {
       return upgradeDialogType === 'orders'
     },
 
-    showPayoutsUpgradeDialog({ upgradeDialogType }) {
+    showPayoutsUpgradeDialog({ upgradeDialogType = '' }) {
       return upgradeDialogType === 'payouts'
     },
 
-    showProductSettingsUpgradeDialog({ upgradeDialogType }) {
+    showProductSettingsUpgradeDialog({ upgradeDialogType = '' }) {
       return upgradeDialogType === 'product-settings'
     },
   },

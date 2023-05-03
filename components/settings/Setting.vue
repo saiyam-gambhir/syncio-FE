@@ -42,10 +42,10 @@ const props = defineProps({
 
       <div class="border-top-1 px-4 py-3 surface-card surface-border text-right">
         <NuxtLink to="/plan-and-billings" v-if="disabled">
-          <Button class="p-button-outlined" icon="pi pi-arrow-right" iconPos="right" label="Unlock this add-on"></Button>
+          <Button icon="pi pi-arrow-right" iconPos="right" label="Unlock this add-on"></Button>
         </NuxtLink>
         <NuxtLink :to="href" v-else>
-          <Button class="p-button-outlined" icon="pi pi-arrow-right" iconPos="right" label="More"></Button>
+          <Button outlined icon="pi pi-arrow-right" iconPos="right" label="More"></Button>
         </NuxtLink>
       </div>
     </div>

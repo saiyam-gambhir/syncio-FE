@@ -11,24 +11,27 @@ const props = defineProps({
 const emits = defineEmits(['tabChanged'])
 
 /* ----- METHODS ----- */
-const tabChangedHandler = (index) => {
+const tabChangedHandler = index => {
   emits('tabChanged', index)
 }
 </script>
 
 <template>
-  <ul class="surface-card p-0 m-0 list-none flex overflow-x-auto select-none">
+  <ul class="p-2 m-0 list-none flex overflow-x-auto select-none" style="background: #f1f1f1; border: 1px solid #dee2e6; border-bottom: 0;">
     <li class="pr-3">
       <Tab
-        :class="{ 'border-blue-500 text-blue-500 hover:border-blue-500': activeTabIndex === 0 }"
+      :class="{ 'active-tab': activeTabIndex === 0, 'non-active-tab text-primary': activeTabIndex !== 0 }"
         @click="tabChangedHandler(0)"
+        class="cursor-pointer px-4 py-3 flex align-items-center transition-colors transition-duration-150"
         label="Open">
       </Tab>
     </li>
+
     <li class="pr-3">
       <Tab
-        :class="{ 'border-blue-500 text-blue-500 hover:border-blue-500': activeTabIndex === 1 }"
+      :class="{ 'active-tab': activeTabIndex === 1, 'non-active-tab text-primary': activeTabIndex !== 1 }"
         @click="tabChangedHandler(1)"
+        class="cursor-pointer px-4 py-3 flex align-items-center transition-colors transition-duration-150"
         label="Complete">
       </Tab>
     </li>

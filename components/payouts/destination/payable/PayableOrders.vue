@@ -1,7 +1,8 @@
 <script setup>
 /* ----- DATA ----- */
+const { fetchPayablePayoutsHandler } = usePayouts()
 const { formatCommission, formatCurrency } = useFilters()
-const { payouts, fetchPayablePayoutsHandler } = usePayouts()
+const payouts = usePayoutsStore()
 </script>
 
 <template>
@@ -13,9 +14,9 @@ const { payouts, fetchPayablePayoutsHandler } = usePayouts()
         </template>
       </Column>
 
-      <Column header="Total commissions" style="width: 14.5%;" class="tabular-nums text-right p-message-success">
-        <template #body="{ data: { commission_type, commission_value } }">
-          {{ formatCommission(commission_type, commission_value) }}
+      <Column header="Total commissions" style="width: 14.5%;" class="p-message-success tabular-nums text-right">
+        <template #body="{ data: { total_commissions } }">
+          <strong>{{ formatCurrency(total_commissions) }}</strong>
         </template>
       </Column>
 
@@ -25,24 +26,24 @@ const { payouts, fetchPayablePayoutsHandler } = usePayouts()
         </template>
       </Column>
 
-      <Column header="Unpaid orders" style="width: 13.5%;" class="tabular-nums text-right">
+      <Column header="Unpaid orders" style="width: 11%;" class="tabular-nums text-right">
         <template #body="{ data: { unpaid_orders } }">
           {{ unpaid_orders }}
         </template>
       </Column>
 
-      <Column header="Payout amount" style="width: 13.5%;" class="tabular-nums text-right">
+      <Column header="Payout amount" style="width: 11%;" class="tabular-nums text-right">
         <template #body="{ data: { payout_amount } }">
           <strong>{{ formatCurrency(payout_amount) }}</strong>
         </template>
       </Column>
 
-      <Column header="Actions" style="width: 10%;" class="text-right">
+      <Column header="Actions" style="width: 15%;" class="text-right">
         <template #body="{ data: { id } }">
           <Button
-            label="Details"
+            @click="fetchPayablePayoutsHandler(id)"
             class="p-button-sm p-button-outlined"
-            @click="fetchPayablePayoutsHandler(id)">
+            label="View details">
           </Button>
         </template>
       </Column>
